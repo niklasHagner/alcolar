@@ -58,8 +58,9 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
                 angular.forEach(productsData, function (product) {
                     
                     var searchProduct = product;
-                    searchProduct.name = product.name;
-                    searchProduct.article_id = product.article_id;
+                    searchProduct.alcohol = decToPercentageNum(product.alcohol);
+                    searchProduct.volume = parseFloat(product.volume) * 100;
+                    searchProduct.article_id = product.article_id; //todo: modify ID to fit to suit official systemet API
                     searchProduct.img = "http:\/\/www.systembolaget.se\/imagevaultfiles\/id_11184\/cf_1915\/" + product.article_id + ".jpg";
                     $scope.products.push(searchProduct);
                 });
@@ -109,9 +110,17 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
             
     $scope.filterSettings = { 
         drinkCategory : { key: "tag", value: "6" },
-        
-        options_orderby : ["name", "price", "price_per_liter", "alcohol", "apk"],
-        orderby : { key: "order_by", value: "alcohol" }, 
+       orderby : { key: "order_by", value: "alcohol" }, //todo: bind
+        orderby_options : [
+            {value: "", display:"-- inget val --" }, 
+            {value: "alcohol", display:"alkoholprocent" }, 
+            {value: "name", display:"produktnamn" }, 
+            {value: "price", display:"pris" },  
+            {value: "price_per_liter", display:"pris per liter" }, 
+            {value: "alcohol", display:"alkoholprocent" }, 
+            {value: "apk", display:"alkohol per krona" }
+        ],
+       
         order : { key: "order", value: "ASC" },
       
         
@@ -124,7 +133,7 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
         limit : { key: "limit", value: 50 },
         offset : { key: "offset", value: 0 },
         
-        alcoholMin : { key: "alcohol_from", value: 0.035 },
+        alcoholMin : { key: "alcohol_from", value: 0.045 },
         alcoholMax : { key: "alcohol_to", value: 0.15 },
         minPrice : { key: "price_from", value: 20 },
         maxPrice : { key: "price_to", value: 70 },
@@ -142,6 +151,8 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
 
 		
 	};
+    //$scope.filterSettings.orderby_selected = $scope.filterSettings.orderby_options[1];
+    //$scope.filterSettings.orderby = { key: "order_by", value: $scope.filterSettings.orderby_selected.value };
     $scope.filterSettings.filterArray = [  
         
         $scope.filterSettings.drinkCategory ,
@@ -166,10 +177,14 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
     $scope.filterSettings.getFilterString = function() {
         var filterStringArray = [];
         for (var i = 0; i< this.filterArray.length; i++) {
-            filterStringArray.push($scope.filterSettings.filterArray[i].key + "=" + this.filterArray[i].value);
+            if ($scope.filterSettings.filterArray[i].value !== "") {
+                filterStringArray.push($scope.filterSettings.filterArray[i].key + "=" + $scope.filterSettings.filterArray[i].value);
+            }
         }
-        filterStringArray.push($scope.filterSettings.orderby.key + "=" + $scope.filterSettings.orderby.value);
-        filterStringArray.push($scope.filterSettings.order.key + "=" + $scope.filterSettings.order.value);
+        if ($scope.filterSettings.orderby.value !== "") {
+            filterStringArray.push($scope.filterSettings.orderby.key + "=" + $scope.filterSettings.orderby.value);
+            filterStringArray.push($scope.filterSettings.order.key + "=" + $scope.filterSettings.order.value);
+        }
         var filterString = filterStringArray.join("&");
         return filterString;
     };

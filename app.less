@@ -1,3 +1,5 @@
+@import "core";
+
 body {
 	background: #ecf0f1;
     text-align:center;
@@ -23,7 +25,7 @@ h3.app-header {font-size: 2.5em; }
     color: #555; text-shadow: 0px -1px 0px #eee;
     font-weight: 600; 
     font-family: 'Terminal Dosis', Helvetica, Arial, serif;
-    color: rgb(39, 126, 167);
+    color: @blue-grey;
 }
 .app-header + .app-header { margin-top: 5px; }
 
@@ -193,15 +195,15 @@ h3.app-header {font-size: 2.5em; }
     height: 60px;
     margin-top: 5px;
     margin-bottom: 5px;
-    background-color: rgb(39, 126, 167);
-    border-color: rgb(22,100,135);
+    background-color: @blue-grey;
+    border-color: @blue-grey-dark;
     color: white;
 }
 .search-btn:hover {
     height: 60px;
     margin-top: 5px;
     margin-bottom: 5px;
-    background-color: rgb(65, 156, 197);
-    border-color: rgb(22, 100, 135);
+    background-color: @blue-grey-light;
+    border-color: @blue-grey-dark;
     color: white;
 }
