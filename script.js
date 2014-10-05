@@ -39,7 +39,7 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
   
     $scope.search = "";
     $scope.products = [];
-		$scope.editFavouritesView = true;
+		$scope.editFavouritesView = false;
 		$scope.searchView = true;
 		$scope.favouriteProducts = [];
 		$scope.currentProduct = $scope.favouriteProducts[0];
@@ -109,8 +109,9 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
 	 }
             
     $scope.filterSettings = { 
-        drinkCategory : { key: "tag", value: "6" },
-       orderby : { key: "order_by", value: "alcohol" }, //todo: bind
+        drinkCategory : { key: "tag", value: "" },
+       
+        orderby : { key: "order_by", value: "alcohol" }, //todo: bind
         orderby_options : [
             {value: "", display:"-- inget val --" }, 
             {value: "alcohol", display:"alkoholprocent" }, 
@@ -127,7 +128,7 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
        
         country : { key: "country", value: "1" },
       
-        name : { key: "name", value: "Laphroaig" },
+        name : { key: "name", value: "" },
         
         maxVolume : { key: "max_volume", value: 0.33 },
         limit : { key: "limit", value: 50 },
@@ -163,9 +164,9 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
         //$scope.filterSettings.apkMax ,
         //$scope.filterSettings.country ,
         //$scope.filterSettings.limit , 
-        //$scope.filterSettings.name
+        $scope.filterSettings.name,
         //$scope.filterSettings.offset ,
-        $scope.filterSettings.minPrice ,
+        $scope.filterSettings.minPrice,
         $scope.filterSettings.maxPrice
         //$scope.filterSettings.minPricePerLiter ,  
         //$scope.filterSettings.maxPricePerLiter ,
@@ -177,18 +178,24 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
     $scope.filterSettings.getFilterString = function() {
         var filterStringArray = [];
         for (var i = 0; i< this.filterArray.length; i++) {
-            if ($scope.filterSettings.filterArray[i].value !== "") {
+            if (isNullUndefinedOrEmpty($scope.filterSettings.filterArray[i].value) !== true) {
                 filterStringArray.push($scope.filterSettings.filterArray[i].key + "=" + $scope.filterSettings.filterArray[i].value);
             }
         }
-        if ($scope.filterSettings.orderby.value !== "") {
+      if (isNullUndefinedOrEmpty($scope.filterSettings.orderby.value) !== true) {
             filterStringArray.push($scope.filterSettings.orderby.key + "=" + $scope.filterSettings.orderby.value);
             filterStringArray.push($scope.filterSettings.order.key + "=" + $scope.filterSettings.order.value);
         }
         var filterString = filterStringArray.join("&");
         return filterString;
     };
-        
+     
+    $scope.clearFilters = function() {
+        $scope.filterSettings.filterArray.forEach(function(elem, index) {
+            elem.value = "";
+            $scope.performSearch();
+        });
+    };
     
     $scope.$watch(function combinedWatch() {
         return {

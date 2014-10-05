@@ -1,4 +1,4 @@
-var drinkCategory = [
+var drinkCategory_options = [
       {
         "id": "1",
         "name": "cognac"

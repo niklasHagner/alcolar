@@ -6,6 +6,9 @@ body {
   font-family: "DroidSansRegular", Ubuntu, Palatino, Helvetica, Arial, sans-serif;
   line-height: 1;
 }
+.favourite-products-container {
+  padding-top: 4px;
+}
 h1,
 h2,
 h3,
@@ -24,20 +27,15 @@ h2.app-header {
 h3.app-header {
   font-size: 2.5em;
 }
-h1.app-header,
-h2.app-header,
-h3.app-header,
-h4.app-header,
-h1.app-header {
+.app-header {
   color: #555;
   text-shadow: 0px -1px 0px #eeeeee;
   font-weight: 600;
   font-family: 'Terminal Dosis', Helvetica, Arial, serif;
   color: #277ea7;
 }
-div.app-header,
-article.app-header {
-  margin-top: -10px;
+.app-header + .app-header {
+  margin-top: 5px;
 }
 .search-result-img {
   width: 40px;
@@ -92,8 +90,8 @@ article.app-header {
 }
 .favourite-product {
   border-radius: 7px;
+  box-shadow: 0 1px 1px 0 #161F42;
   display: block;
-  background-color: rgba(235, 235, 235, 0.5);
 }
 .favourite-product-title {
   color: #bdc3c7;
@@ -102,23 +100,6 @@ article.app-header {
   margin-top: 10px;
   margin-left: 12px;
   font-weight: 700;
-}
-.favourite-products-container {
-  height: auto;
-  margin: 5px;
-  border-top: solid 4px #a72727;
-  border-bottom: solid 4px #a72727;
-  background-color: rgba(228, 187, 187, 0.5);
-}
-.favourite-products-container {
-  height: auto;
-  margin: 5px;
-  border-top: solid 4px #a72727;
-  border-bottom: solid 4px #a72727;
-  background-color: rgba(228, 187, 187, 0.5);
-}
-.favourite-product-header {
-  color: #a72727;
 }
 .search-result-title {
   width: 220px;
@@ -138,11 +119,10 @@ article.app-header {
 }
 .favourite-product-delete {
   font-size: 18px;
-  color: #555;
+  color: #bdc3c7;
   float: right;
   margin-right: 12px;
   margin-top: 8px;
-  cursor: pointer;
 }
 .search-result-add {
   font-size: 18px;
@@ -176,10 +156,6 @@ article.app-header {
   padding: 5px;
 }
 .search-container section input {
-  max-width: 150px;
-  padding: 5px;
-}
-.search-container section input[type="number"] {
   min-width: 50px;
   max-width: 80px;
   padding: 5px;
@@ -203,17 +179,8 @@ article.app-header {
   /*background-color: rgb(69, 141, 29);
     color: #eee;*/
   box-shadow: 1px 0px 3px #555;
-  border: solid 4px #277ea7;
   margin: 10px 0px;
   padding: 10px 15px;
-}
-.search-filter-bar-title {
-  position: absolute;
-  left: 28px;
-  top: 20px;
-  font-family: "Terminal Dosis";
-  font-style: italic;
-  color: #277ea7;
 }
 .search-controls-container {
   float: none;
@@ -228,7 +195,6 @@ article.app-header {
   background-color: #277ea7;
   border-color: #166487;
   color: white;
-  float: left;
 }
 .search-btn:hover {
   height: 60px;
