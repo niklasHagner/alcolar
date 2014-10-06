@@ -1,23 +1,4 @@
-function decToPercentageNum(dec) {
-	return parseFloat(dec) * 100.0;
-}
 
-Number.roundUp = function(roundTo) {
-    return this.toFixed(roundTo);
-}
-
-function roundUp(num, roundTo) {
-    if (typeof num === "Number")
-        return num.toFixed(roundTo);
-    
-    try {
-        return parseFloat(num).toFixed(roundTo);
-    }
-    catch(ex) {
-        throw ex;
-    }
-        
-}
 
 /*--------------------------------------
 EXTENSION METHODS
@@ -31,6 +12,7 @@ String.format = function () {
     }
     return s;
 };
+
 
 Array.prototype.last = function () {
     return this[this.length - 1];
@@ -49,6 +31,12 @@ Array.prototype.getUniqueByValue = function (prop) {
     return a;
 }
 
+function isWhitespace(str) {
+    if (!str.replace(/\s/g, '').length) {
+        return true;  // string only contained whitespace (ie. spaces, tabs or line breaks)
+    }
+    return false;
+};
 
 /*--------------------------------------
 OBJECTS 
@@ -140,6 +128,43 @@ var jQueryObjToString = function (jqueryObj) {
     });
     return tmp.html();
 };
+
+function objectEquality(a, b, logNonMatchingProperties) {
+    var turnLoggingOn = isDefined(logNonMatchingProperties) ? logNonMatchingProperties : false;
+    // Create arrays of property names
+    var aProps = Object.getOwnPropertyNames(a);
+    var bProps = Object.getOwnPropertyNames(b);
+
+    // If number of properties is different,
+    // objects are not equivalent
+    if (aProps.length != bProps.length) {
+        if (turnLoggingOn) {
+            console.log("Comparing the last properties: ");
+            console.log(aProps.last());
+            console.log(bProps.last());
+        }
+        return false;
+    }
+
+    for (var i = 0; i < aProps.length; i++) {
+        var propName = aProps[i];
+
+        // If values of same property are not equal,
+        // objects are not equivalent
+        if (a[propName] !== b[propName]) {
+            if (turnLoggingOn) {
+                console.log("Comparing property: " + propName);
+                console.log(a[propName]);
+                console.log(b[propName]);
+            }
+            return false;
+        }
+    }
+
+    // If we made it this far, objects
+    // are considered equivalent
+    return true;
+}
 
 function clone(obj) {
     // Handle the 3 simple types, and null or undefined
@@ -254,7 +279,7 @@ function addOptionsToDropdown(optionList, ddlControl) {
 
 
 /*--------------------------------------
-HTML GENERATING
+HTML GENERATION
 --------------------------------------*/
 function getHTML(buttonType, text) {
     var iconClass = "fa ";
@@ -327,6 +352,51 @@ function showElement(html, options) {
         });
 }
 
+//pasteUnformattedText
+//Markup example:
+//<div contenteditable='true' onpaste='pasteUnformattedText(this, event)'>
+function pasteUnformattedText(elem, e) {
+    var savedcontent = elem.innerHTML;
+    if (e && e.clipboardData && e.clipboardData.getData) {// Webkit - get data from clipboard, put into editdiv, cleanup, then cancel event
+        elem.innerHTML = e.clipboardData.getData('text/plain');
+
+        waitforpastedata(elem, savedcontent);
+        if (e.preventDefault) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+        return false;
+    }
+    else {// Everything else - empty editdiv and allow browser to paste content into it, then cleanup
+        elem.innerHTML = "";
+        waitforpastedata(elem, savedcontent);
+        return true;
+    }
+}
+
+
+function waitforpastedata(elem, savedcontent) {
+    if (elem.childNodes && elem.childNodes.length > 0) {
+        processpaste(elem, savedcontent);
+    }
+    else {
+        that = {
+            e: elem,
+            s: savedcontent
+        }
+        that.callself = function () {
+            waitforpastedata(that.e, that.s)
+        }
+        setTimeout(that.callself, 20);
+    }
+}
+
+function processpaste(elem, savedcontent) {
+    pasteddata = elem.innerHTML;
+    elem.innerHTML = $(elem).text();
+
+}
+
 
 /*--------------------------------------
 LOGGING AND DEBUGGING
@@ -347,11 +417,26 @@ function log(logWhen, message) {
 MATH
 --------------------------------------*/
 
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function decToPercentageNum(dec) {
+	return parseFloat(dec) * 100.0;
+}
+
+function roundUp(num, roundTo) {
+    if (typeof num === "Number")
+        return num.toFixed(roundTo);
+    
+    try {
+        return parseFloat(num).toFixed(roundTo);
+    }
+    catch(ex) {
+        throw ex;
+    }
+        
+}
 
 /*--------------------------------------
 ARRAYS
@@ -542,15 +627,33 @@ function replaceNode(oldNode, newNode) {
     $(oldNode).parent()[0].replaceChild(newNode, oldNode);
 }
 function insertBeforeNode(oldNode, newNode, selector) { //the selector is used for parent.find() - newnode will be added to the resulting array using splice
-    //$(oldNode).parent()[0].replaceChild(newNode, oldNode); //replaceChild doesn't work...it only deletes, cannot add
-
-    var oldNodeIndex = $(oldNode).parent()[0].indexOf(oldNode);
-    $(oldNode).parent().find(selector).splice(Math.max(0, oldNodeIndex - 1), 0, oldNode);
+    var oldNodeIndex = null;
+    $(oldNode).parent().find(selector).each(function (ix) {
+        if (this == oldNode) {
+            oldNodeIndex = ix;
+            return;
+        }
+    });
+    $(oldNode).parent().find(selector).splice(Math.max(0, oldNodeIndex - 1), 0, newNode);
 }
 function insertAfterNode(oldNode, newNode, selector) {
 
-    var oldNodeIndex = $(oldNode).parent()[0].indexOf(oldNode);
-    $(oldNode).parent().find(selector).splice(oldNodeIndex, 0, oldNode); //note: no need to check if index is too high. splice gracefully handles it
+    var oldNodeIndex = null;
+    $(oldNode).parent().find(selector).each(function (ix) {
+        if (this == oldNode) {
+            oldNodeIndex = ix;
+            return;
+        }
+    });
+    $(oldNode).parent().find(selector).splice(oldNodeIndex, 0, newNode); //note: no need to check if index is too high. splice gracefully handles it
+}
+
+//wrappar $.parseXML och fitml ltrerar bort html-formatterade skräptecken
+function strToXMLNode(str) {
+    while (str.indexOf("&nbsp;") > -1) {
+        str = str.replace("&nbsp;", " ");
+    }
+    return $.parseXML(str);
 }
 
 var xmlToString = function (xmlData) {
