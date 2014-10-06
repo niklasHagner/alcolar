@@ -15,8 +15,11 @@
     <link href="http://fonts.googleapis.com/css?family=Terminal+Dosis:400,200" rel="stylesheet" type="text/css">
    
     <script src="js/common.js"></script>
-    <script src="script.js"></script>
-    <script src="filters.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/drinkCategories.js"></script>
+    <script src="js/countries.js"></script>
+    <script src="js/systembolagetSearchFactory.js"></script>
+    <script src="js/filters.js"></script>
   </head>
 
   <body ng-app="myApp">
@@ -100,7 +103,13 @@
                          <span class="search-filter-bar-title">Filters </span>
                
                       
-                       
+                          <section>
+                            <button class="btn" ng-click="clearFilters()">
+                             <span class="glyphicon glyphicon-remove"></span>
+                             Clear filters 
+                             </button>
+                        </section>
+                        
                        
                         <section>
                             <label>Pris</label>
@@ -108,36 +117,40 @@
                             <span>max</span><input type="number" step="5" ng-model="filterSettings.maxPrice.value">
                         </section>
 
-                        <section>
+                        <!--<section>
                             <label>Alkoholhalt (0-1)</label>
                             <span>min</span><input type="number" step="0.5" ng-model="filterSettings.alcoholMin.value">
                             <span>max</span><input type="number" step="0.5" ng-model="filterSettings.alcoholMax.value">
-                        </section>
+                        </section>-->
                         
-                        <section>
-                            <button class="btn" ng-click="clearFilters()">
-                             <span class="glyphicon glyphicon-remove"></span>
-                             Clear filters 
-                             </button>
+                             <section>
+                            <label>Ordna efter</label>
+                            <!--DOESNT WORK i.value as i.display for i in filterSettings.orderby_options">-->
+                             <select data-ng-options="o.display for o in filterSettings.orderby_options" data-ng-model="filterSettings.orderby_selected"></select>
                         </section>
-                        
+                     
+                     
+                          <section>
+                            <label>Dryckestyp</label>
+                              <select ng-model="filterSettings.drinkCategory_selected" ng-options="i.name for i in filterSettings.drinkCategory_options"></select>
+                        </section>
+
+                     
                       <section>
                            <input class="searchfield" type="text" 
-                       name="search" ng-model="filterSettings.name.value" 
-                       placeholder="produktnamn"
-                        ng-change="performSearch('')" class="search-input" />
+                               name="search" ng-model="filterSettings.name.value" 
+                               placeholder="produktnamn"
+                                ng-change="performSearch('')" class="search-input" />
                       </section>  
 		       
-
+                   
+                        
                       <button class="btn search-btn" ng-click="performSearch()">
                       <span class="glyphicon glyphicon-search"></span>
                       Search
                       </button>
                        
-                            <!--<section>
-                            <label>Ordna efter</label>
-                             <select ng-model="filterSettings.orderby_selected" ng-options="i.value as i.display for i in filterSettings.orderby_options">
-                        </section>-->
+                     
                         
                        
                     </div>

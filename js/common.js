@@ -2,6 +2,22 @@ function decToPercentageNum(dec) {
 	return parseFloat(dec) * 100.0;
 }
 
+Number.roundUp = function(roundTo) {
+    return this.toFixed(roundTo);
+}
+
+function roundUp(num, roundTo) {
+    if (typeof num === "Number")
+        return num.toFixed(roundTo);
+    
+    try {
+        return parseFloat(num).toFixed(roundTo);
+    }
+    catch(ex) {
+        throw ex;
+    }
+        
+}
 
 /*--------------------------------------
 EXTENSION METHODS

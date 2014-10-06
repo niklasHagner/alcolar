@@ -2,52 +2,22 @@
 
 var app = angular.module('myApp', []);
 
-app.factory('systembolagetSearch', function ($q, $http) {
 
-    return {
+app.controller('SystembolagetSearchController', 
+               ['$scope', 'systembolagetSearch', '$timeout', '$rootScope', 'drinkCategory_options', 'country_options',
+                function ($scope, systembolagetSearch, $timeout, $rootScope, drinkCategory_options, country_options) {
 
-        getDataFromSystembolaget: function (filterSettings) {
-            var deferred = $q.defer();
-            search = "";
-            var filters = filterSettings.getFilterString();
-            var apiUrl = "http://systemetapi.se/product?";
-            var preventCorsProblems = "&callback=?";
-            var url = apiUrl + filters + preventCorsProblems;
-            
-            $.ajax({
-			  url: url,
-			  async: true, cache:true,
-			  dataType: 'json',
-			  success: function (data) {
-					var products = data;
-					deferred.resolve(products);
-			  },
-			  error: function(jqXHR, textStatus, errorString) {
-				console.log("error calling API." +"\n  Returned with Status: " + textStatus + "\n  Error: " + errorString);
-			  }
-			});
-            
-            return deferred.promise;
-        }
-    };
-});
-
-
-
-app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch', '$timeout', '$rootScope', function ($scope, systembolagetSearch, $timeout, $rootScope) {
-
-  
-    $scope.search = "";
     $scope.products = [];
-		$scope.editFavouritesView = false;
-		$scope.searchView = true;
-		$scope.favouriteProducts = [];
-		$scope.currentProduct = $scope.favouriteProducts[0];
-		$scope.currentProductIndex = 0;
-				
-		$scope.removeProduct = function(index) {
-			$scope.favouriteProducts.splice(index, 1);
-		};
+    $scope.favouriteProducts = [];
+    $scope.currentProductIndex = 0;
+    $scope.currentProduct = $scope.favouriteProducts[$scope.currentProductIndex];	
+    
+    $scope.editFavouritesView = false;
+    $scope.searchView = true;
+
+    $scope.removeProduct = function(index) {
+        $scope.favouriteProducts.splice(index, 1);
+    };
     
     $scope.performSearch = function (value) {
             $scope.products = [];
@@ -58,59 +28,25 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
                 angular.forEach(productsData, function (product) {
                     
                     var searchProduct = product;
-                    searchProduct.alcohol = decToPercentageNum(product.alcohol);
-                    searchProduct.volume = parseFloat(product.volume) * 100;
+                    searchProduct.alcohol = roundUp(decToPercentageNum(product.alcohol), 1);
+                    searchProduct.volume = roundUp(parseFloat(product.volume) * 100, 0);
                     searchProduct.article_id = product.article_id; //todo: modify ID to fit to suit official systemet API
                     searchProduct.img = "http:\/\/www.systembolaget.se\/imagevaultfiles\/id_11184\/cf_1915\/" + product.article_id + ".jpg";
                     $scope.products.push(searchProduct);
                 });
                  
-                //$scope.getImages($scope.products);
+                //systembolagetSearch.getImages($scope.products); //fetch images async, since they are unimportant
             })
-           
-
-       
     };
     
                 
             
-	 $scope.getImages = function(list) {
-	
-         var errorCounter = 0;
-		 for(var i=0;i<15; i++) {
-             var id = list[i].product_number.substring(0,5);
-             //id = list[i].article_id < 6 ? list[i].article_id.substring(0,4) : list[i].article_id.substring(0,5) ;
-			
-             
-             for (var attempt = 3; attempt < 8; attempt++) {
-             
-                 id = list[i].product_number.substring(0,attempt);
-                 var url = "http://systembolagetapi.se/?id=" + id + "&callback=?"; //avoids cross-domain-problems
-                     console.log("attempt : " + attempt + " @ " + id);
-                 
-                $.ajax({
-                  url: url,
-                  async: true, cache:true,
-                  dataType: 'json',
-                  success: function (data) {
-                        console.log("found image ");
-                        /*var imgSrc = decodeURI(data.image);
-                        list[this.songArrayIndex]["img"] = imgSrc;
-                        $scope.$apply(); */
-                  },
-                  error: function(jqXHR, textStatus, errorString) {
-                    //console.log("error calling spotify:s search API.");
-                      errorCounter++;
-                  }
-                });
-             }
-		
-		 }
-	 }
+	 
             
     $scope.filterSettings = { 
         drinkCategory : { key: "tag", value: "" },
-       
+        drinkCategory_options : drinkCategory_options,
+        
         orderby : { key: "order_by", value: "alcohol" }, //todo: bind
         orderby_options : [
             {value: "", display:"-- inget val --" }, 
@@ -134,10 +70,10 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
         limit : { key: "limit", value: 50 },
         offset : { key: "offset", value: 0 },
         
-        alcoholMin : { key: "alcohol_from", value: 0.045 },
-        alcoholMax : { key: "alcohol_to", value: 0.15 },
-        minPrice : { key: "price_from", value: 20 },
-        maxPrice : { key: "price_to", value: 70 },
+        alcoholMin : { key: "alcohol_from", value: "" }, //0.045
+        alcoholMax : { key: "alcohol_to", value: "" }, //0.15
+        minPrice : { key: "price_from", value: 25 },
+        maxPrice : { key: "price_to", value: 100 },
         minPricePerLiter : { key: "price_per_liter_from", value: 10 },
         maxPricePerLiter : { key: "price_per_liter_to", value: 1000 },
         apkMin : { key: "apk_from", value: 0.9 },
@@ -152,8 +88,11 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
 
 		
 	};
-    //$scope.filterSettings.orderby_selected = $scope.filterSettings.orderby_options[1];
-    //$scope.filterSettings.orderby = { key: "order_by", value: $scope.filterSettings.orderby_selected.value };
+    $scope.filterSettings.drinkCategory_selected = $scope.filterSettings.drinkCategory_options[0];
+    $scope.filterSettings.drinkCategory = { key:"tag", value: $scope.filterSettings.drinkCategory_selected.id  };              
+                    
+    $scope.filterSettings.orderby_selected = $scope.filterSettings.orderby_options[0];
+    $scope.filterSettings.orderby = { key: "order_by", value: $scope.filterSettings.orderby_selected.value };
     $scope.filterSettings.filterArray = [  
         
         $scope.filterSettings.drinkCategory ,
@@ -194,6 +133,9 @@ app.controller('SystembolagetSearchController', ['$scope', 'systembolagetSearch'
         $scope.filterSettings.filterArray.forEach(function(elem, index) {
             elem.value = "";
             $scope.performSearch();
+        });
+        $scope.filterSettings.filterArray.forEach(function(elem, index) {
+            console.log(elem.value);
         });
     };
     
