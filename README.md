@@ -1,10 +1,8 @@
 Alcolar
 =======
-Alcohol + Angular
+
+###Angular for searching the Swedish liquour store 'Systembolaget'
 --------------------------------------------------
-
-###Webapp for searching Systembolaget (Sweden's monopolized liquor store)
-
 
 #### Uses "systemetAPI" designed by Karl Roos.
 + Website: http://systemetapi.se/
