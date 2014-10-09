@@ -6,7 +6,7 @@ Alcohol + Angular
 ###Webapp for searching Systembolaget (Sweden's monopolized liquor store)
 
 
-#### Uses systemetapi designed by Karl Roos.
+#### Uses "systemetAPI" designed by Karl Roos.
 + Website: http://systemetapi.se/
 + Documentation: https://www.mashape.com/karlroos/systemet
 
