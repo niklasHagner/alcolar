@@ -13,4 +13,4 @@ Alcohol + Angular
 #### Technologies used
 + AngularJS
 + Boostrap 3
-+ Promises with query.Deffered
++ Promises with jQuery.deferred
