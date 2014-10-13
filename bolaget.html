@@ -114,7 +114,7 @@
                         
                        
                         <section>
-                            <label>Pris</label>
+                            <label>Price (SEK)</label>
                             <span>min</span><input type="number" step="5" ng-model="filterSettings.minPrice.value">
                             <span>max</span><input type="number" step="5" ng-model="filterSettings.maxPrice.value">
                         </section>
@@ -126,7 +126,7 @@
                         </section>-->
                         
                              <section>
-                            <label>Ordna efter</label>
+                            <label>Order by</label>
                             <!--DOESNT WORK i.value as i.display for i in filterSettings.orderby_options">-->
                              <select data-ng-options="o.display for o in filterSettings.orderby_options" data-ng-model="filterSettings.orderby_selected"></select>
                         </section>
@@ -141,7 +141,7 @@
                       <section>
                            <input class="searchfield" type="text" 
                                name="search" ng-model="filterSettings.name.value" 
-                               placeholder="produktnamn"
+                               placeholder="product name"
                                 ng-change="performSearch('')" class="search-input" />
                       </section>  
 		       

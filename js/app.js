@@ -49,13 +49,12 @@ app.controller('SystembolagetSearchController',
         
         orderby : { key: "order_by", value: "alcohol" }, //todo: bind
         orderby_options : [
-            {value: "", display:"-- inget val --" }, 
-            {value: "alcohol", display:"alkoholprocent" }, 
-            {value: "name", display:"produktnamn" }, 
-            {value: "price", display:"pris" },  
-            {value: "price_per_liter", display:"pris per liter" }, 
-            {value: "alcohol", display:"alkoholprocent" }, 
-            {value: "apk", display:"alkohol per krona" }
+            {value: "", display:"default" }, 
+            {value: "alcohol", display:"alcohol percent" }, 
+            {value: "name", display:"product name" }, 
+            {value: "price", display:"price" },  
+            {value: "price_per_liter", display:"price per liter" }, 
+            {value: "apk", display:"alcohol per krona" }
         ],
        
         order : { key: "order", value: "ASC" },
