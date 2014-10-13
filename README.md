@@ -4,7 +4,8 @@ Alcolar
 ###Angular app for searching the Swedish liquour store 'Systembolaget'
 --------------------------------------------------
 
-####Demo: http://hagge.se
+####Demo: 
+http://hagge.se/Systembolaget/bolaget.html
 
 #### Uses "systemetAPI" designed by Karl Roos.
 + Website: http://systemetapi.se/
