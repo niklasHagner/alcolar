@@ -88,14 +88,19 @@ app.controller('SystembolagetSearchController',
 
 		
 	};
-    $scope.filterSettings.drinkCategory_selected = $scope.filterSettings.drinkCategory_options[0];
-    $scope.filterSettings.drinkCategory = { key:"tag", value: $scope.filterSettings.drinkCategory_selected.id  };              
+    $scope.filterSettings.drinkCategory_selected = $scope.filterSettings.drinkCategory_options[1];
+    $scope.filterSettings.drinkCategory = function() {
+        return { key: "tag", value: $scope.filterSettings.drinkCategory_selected.id  };     
+    };
                     
-    $scope.filterSettings.orderby_selected = $scope.filterSettings.orderby_options[0];
-    $scope.filterSettings.orderby = { key: "order_by", value: $scope.filterSettings.orderby_selected.value };
-    $scope.filterSettings.filterArray = [  
+    $scope.filterSettings.orderby_selected = $scope.filterSettings.orderby_options[1];
+    $scope.filterSettings.orderby = function() {
+        return { key: "order_by", value: $scope.filterSettings.orderby_selected.value };
+    };
+    $scope.filterSettings.filterArray = function() { 
+        var arr = [  
         
-        $scope.filterSettings.drinkCategory ,
+        $scope.filterSettings.drinkCategory() ,
         //$scope.filterSettings.maxVolume,
         $scope.filterSettings.alcoholMin ,
         //$scope.filterSettings.alcoholMax ,
@@ -113,16 +118,18 @@ app.controller('SystembolagetSearchController',
         //$scope.filterSettings.maxDate ,
         //$scope.filterSettings.minYear ,
         //$scope.filterSettings.maxYear
-    ];
+        ];
+        return arr;
+    };
     $scope.filterSettings.getFilterString = function() {
         var filterStringArray = [];
-        for (var i = 0; i< this.filterArray.length; i++) {
-            if (isNullUndefinedOrEmpty($scope.filterSettings.filterArray[i].value) !== true) {
-                filterStringArray.push($scope.filterSettings.filterArray[i].key + "=" + $scope.filterSettings.filterArray[i].value);
+        for (var i = 0; i< this.filterArray().length; i++) {
+            if (isNullUndefinedOrEmpty($scope.filterSettings.filterArray()[i].value) !== true) {
+                filterStringArray.push($scope.filterSettings.filterArray()[i].key + "=" + $scope.filterSettings.filterArray()[i].value);
             }
         }
-      if (isNullUndefinedOrEmpty($scope.filterSettings.orderby.value) !== true) {
-            filterStringArray.push($scope.filterSettings.orderby.key + "=" + $scope.filterSettings.orderby.value);
+      if (isNullUndefinedOrEmpty($scope.filterSettings.orderby().value) !== true) {
+            filterStringArray.push($scope.filterSettings.orderby().key + "=" + $scope.filterSettings.orderby().value);
             filterStringArray.push($scope.filterSettings.order.key + "=" + $scope.filterSettings.order.value);
         }
         var filterString = filterStringArray.join("&");
@@ -130,11 +137,11 @@ app.controller('SystembolagetSearchController',
     };
      
     $scope.clearFilters = function() {
-        $scope.filterSettings.filterArray.forEach(function(elem, index) {
+        $scope.filterSettings.filterArray().forEach(function(elem, index) {
             elem.value = "";
             $scope.performSearch();
         });
-        $scope.filterSettings.filterArray.forEach(function(elem, index) {
+        $scope.filterSettings.filterArray().forEach(function(elem, index) {
             console.log(elem.value);
         });
     };

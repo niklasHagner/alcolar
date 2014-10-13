@@ -10,10 +10,10 @@
 }
 .search-filter-bar-title {
   position: absolute;
-  left: 28px;
+  left: 50%;
   top: 20px;
   font-family: "Terminal Dosis";
-  font-style: italic;
+    letter-spacing: 5px;
   color: #277ea7;
 }
 .search-controls-container {

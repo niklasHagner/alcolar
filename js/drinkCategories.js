@@ -1,16 +1,36 @@
 app.value("drinkCategory_options",
   [
-     {
+    {
         "id": "",
         "name": "-- inget val --"
       },
       {
-        "id": "1",
-        "name": "cognac"
+        "id": "6",
+        "name": "beer"
+      },
+     {
+        "id": "20",
+        "name": "wine"
       },
       {
-        "id": "2",
-        "name": "liquor"
+        "id": "23",
+        "name": "red-wine"
+      },
+      {
+        "id": "25",
+        "name": "white-wine"
+      },
+    {
+        "id": "24",
+        "name": "sparkling"
+      },
+      {
+        "id": "21",
+        "name": "dry"
+      },
+      {
+        "id": "22",
+        "name": "rose"
       },
       {
         "id": "3",
@@ -23,18 +43,6 @@ app.value("drinkCategory_options",
       {
         "id": "5",
         "name": "rum"
-      },
-      {
-        "id": "6",
-        "name": "beer"
-      },
-      {
-        "id": "7",
-        "name": "ale"
-      },
-      {
-        "id": "8",
-        "name": "stout"
       },
       {
         "id": "9",
@@ -51,6 +59,14 @@ app.value("drinkCategory_options",
       {
         "id": "12",
         "name": "brandy"
+      },
+    {
+        "id": "1",
+        "name": "cognac"
+      },
+      {
+        "id": "2",
+        "name": "liquor"
       },
       {
         "id": "13",
@@ -76,34 +92,19 @@ app.value("drinkCategory_options",
         "id": "18",
         "name": "bourbon"
       },
+     {
+        "id": "7",
+        "name": "ale"
+      },
+      {
+        "id": "8",
+        "name": "stout"
+      },
       {
         "id": "19",
         "name": "lager"
       },
-      {
-        "id": "20",
-        "name": "wine"
-      },
-      {
-        "id": "21",
-        "name": "dry"
-      },
-      {
-        "id": "22",
-        "name": "rose"
-      },
-      {
-        "id": "23",
-        "name": "red-wine"
-      },
-      {
-        "id": "24",
-        "name": "sparkling"
-      },
-      {
-        "id": "25",
-        "name": "white-wine"
-      },
+      
       {
         "id": "26",
         "name": "non-alcohol"
