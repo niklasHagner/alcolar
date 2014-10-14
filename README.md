@@ -4,11 +4,13 @@ Alcolar
 ###Angular app for searching the Swedish liquour store 'Systembolaget'
 --------------------------------------------------
 
-#### Uses "systemetAPI" designed by Karl Roos.
-+ Website: http://systemetapi.se/
-+ Documentation: https://www.mashape.com/karlroos/systemet
+####Demo: 
+http://hagge.se/Systembolaget/bolaget.html
 
-#### Technologies used
+#### Libraries used:
++ "SystemetAPI" designed by Karl Roos
+  +  Website: http://systemetapi.se/
+  + Documentation: https://www.mashape.com/karlroos/systemet
 + AngularJS
 + Boostrap 3
 + Promises with jQuery.deferred
