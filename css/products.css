@@ -22,6 +22,11 @@
   margin-left: 20px;
   width: 340px;
 }
+@media (max-width: 800px) {
+  .search-result-product {
+    width: 90%;
+  }
+}
 .search-result-product:hover {
   box-shadow: 0 1px 5px #41525f;
 }
@@ -93,6 +98,11 @@
   float: right;
   margin-right: 12px;
   margin-top: 8px;
+}
+@media (max-width: 800px) {
+  .search-result-add {
+    font-size: 30px;
+  }
 }
 .search-result-add:hover {
   cursor: pointer;
