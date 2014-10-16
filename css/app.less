@@ -11,20 +11,23 @@ body {
 
 h1, h2, h3, h4 {
     font-family: @main-font;
-    color: @blue-light;
     font-weight: 600;
     text-shadow: 1px 0px 0px #555;
 }
 h1.app-header { font-size: 5em;}
 h2.app-header {font-size: 3.5em; }
 h3.app-header {font-size: 2.5em; }
-h1.app-header, h2.app-header, h3.app-header, h4.app-header, h1.app-header {
-    color: #555; 
+.app-header h1, .app-header h2, .app-header h3, .app-header h4,  {
     text-shadow: 0px -1px 0px #eee;
     font-weight: 600; 
-    font-family: @main-font;
-    color: @red;
+    font-family: @logo-font;
+    color: #666;
     margin-top:5px;
+}
+.app-header h3 {
+    margin-left: 60px;
+    font-family: @headline-font;
+    color: #555; text-shadow: none;
 }
 div.app-header, article.app-header {
     margin-top: 20px;
