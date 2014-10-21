@@ -37,7 +37,7 @@ app.controller('SystembolagetSearchController',
                         return x.id == product.country_id; 
                     })[0];
                     
-                    console.log(searchProduct);
+                    //console.log(searchProduct);
                     $scope.products.push(searchProduct);
                 });
                  
@@ -55,14 +55,16 @@ app.controller('SystembolagetSearchController',
         
         orderby : { key: "order_by", value: "alcohol" }, //todo: bind
         orderby_options : [
-            {value: "", display:"default" }, 
             {value: "alcohol", display:"alcohol %" }, 
             {value: "name", display:"product name" }, 
             {value: "price", display:"price" },  
             {value: "price_per_liter", display:"price per liter" }, 
             {value: "apk", display:"alcohol per krona" }
         ],
-       
+        order_options : [
+          { key: "order", value: "ASC" },
+            { key: "order", value: "DESC" }
+        ],
         order : { key: "order", value: "ASC" },
       
         
@@ -144,13 +146,32 @@ app.controller('SystembolagetSearchController',
     $scope.clearFilters = function() {
         $scope.filterSettings.filterArray().forEach(function(elem, index) {
             elem.value = "";
-            $scope.performSearch();
         });
-        $scope.filterSettings.filterArray().forEach(function(elem, index) {
+        $scope.filterSettings.drinkCategory_selected = $scope.filterSettings.drinkCategory_options[0];
+        $scope.performSearch();
+        /*$scope.filterSettings.filterArray().forEach(function(elem, index) {
             console.log(elem.value);
-        });
+        });*/
     };
+                    
+    $scope.setOrderBy = function(orderByObj, upOrDown, targetArrayName) {
+        
+        //toggle ASC/DESC
+        if (typeof upOrDown !== "undefined") {
+            $scope.filterSettings.order = $scope.filterSettings.order_options.filter(function(x) { return x.value == upOrDown })[0];
+        }
+        else if ($scope.filterSettings.orderby_selected.value !== orderByObj.value)
+            $scope.filterSettings.orderby_selected = $scope.filterSettings.orderby_options.filter(function(x) { return x.value == orderByObj.value })[0];
+        else {
+            $scope.filterSettings.order = 
+                ($scope.filterSettings.order_options[0].value == $scope.filterSettings.order.value) ? $scope.filterSettings.order_options[1] : $scope.filterSettings.order_options[0];
+        }
+        //var target =  typeof targetArrayName === "undefined" || targetArrayName == 'searchResult' ?  $scope.products : $scope.favouriteProducts;
+        //$scope.filterSettings.orderby();
+        $scope.performSearch();
+    }
     
+    ///type-to-search
     $scope.$watch(function combinedWatch() {
         return {
             search: $scope.filterSettings.name

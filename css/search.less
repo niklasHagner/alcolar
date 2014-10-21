@@ -70,9 +70,11 @@
     color: #555;
 }
 
+.search-btn *, .search-btn:hover *, .search-btn:active *, .search-btn:focus *, .search-btn.active * {
+    color: white;
+}
 
-
-.search-btn, .search-btn:hover, .search-btn:active {
+.search-btn, .search-btn:hover, .search-btn:active, .search-btn:focus, .search-btn.active {
     color: white;
      margin-top: 15px;
     margin-bottom: 5px;
@@ -87,4 +89,10 @@
     background-color: @blue-grey-light;
     border-color: @blue-grey-dark;
     color: #eee;
+}
+.search-order-buttons .btn .glyphicon {
+    color: #666;
+}
+.search-order-buttons .btn .glyphicon.active {
+    color: @blue-grey-light;
 }

@@ -112,13 +112,7 @@
                          <!--<span class="search-filter-bar-title">Filters </span>-->
                
                       
-                          <section>
-                            <button class="btn" ng-click="clearFilters()">
-                             <span class="glyphicon glyphicon-remove"></span>
-                             Clear filters 
-                             </button>
-                        </section>
-                        
+                         
                        
                         <section>
                             <label>Price (SEK)</label>
@@ -139,11 +133,10 @@
                               <select ng-model="filterSettings.drinkCategory_selected" ng-options="i.name for i in filterSettings.drinkCategory_options"></select>
                         </section>
                         
-                             <section>
+                        <!--<section>
                             <label>Order by</label>
-                            <!--DOESNT WORK i.value as i.display for i in filterSettings.orderby_options">-->
                              <select data-ng-options="o.display for o in filterSettings.orderby_options" data-ng-model="filterSettings.orderby_selected"></select>
-                        </section>
+                        </section>-->
                      
 
                      
@@ -162,30 +155,40 @@
                       Search
                       </button>
                         </section>  
-                     
                         
+                         <section>
+                            <button class="btn" ng-click="clearFilters()">
+                             <span class="glyphicon glyphicon-remove"></span>
+                             Clear filters 
+                             </button>
+                        </section>
+                        
+                     
+                       <section style="display:block; clear:both; ">
+                        <div class="search-order-buttons btn-group" >
+
+                            <button type="button" class="btn btn-default" ng-repeat="option in filterSettings.orderby_options"
+                               ng-click="setOrderBy(option)" 
+                               ng-class="{'active': option.value == filterSettings.orderby_selected.value}">
+                                <span name="desc" class="glyphicon glyphicon-chevron-down"
+                                    ng-class="{'active' : option.value == filterSettings.orderby_selected.value && filterSettings.order.value == 'DESC'}" 
+                                        ng-click="setOrderBy(option, 'DESC')" 
+                                ></span> 
+
+                                {{option.display}}
+                                 <span name="asc" class="glyphicon glyphicon-chevron-up"
+                                      ng-class="{'active' : option.value == filterSettings.orderby_selected.value && filterSettings.order.value == 'ASC'}"
+                                          ng-click="setOrderBy(option, 'ASC')" 
+                                 ></span>
+                            </button>
+                        </div>
+                      </section>
                        
                     </div>
                   </div>
 </div>
                    
-                   <!--<div class="btn-group">
-
-                      <button type="button" class="btn btn-default" ng-click="filter('artist+down', 'searchResult')" ng-class="{'active': songs.filter == 'artist+down'}"> 
-                      <i class="icon-arrow-down"></i> beer</button>
-
-                        <button type="button" class="btn btn-default" ng-click="filter('alcohol+up', 'searchResult')" ng-class="{'active': songs.filter == 'artist+up'}"> 
-                            <i class="icon-arrow-up"></i> <i class="icon-arrow-down"></i> alcohol</button>
-
-
-                      <button type="button" class="btn btn-default" ng-click="filter('popularity+down', 'searchResult')" ng-class="{'active': songs.filter == 'popularity+down'}"> 
-                            <i class="icon-arrow-down"></i> sprit </button>
-                      <button type="button" class="btn btn-default" ng-click="filter('name+up', 'searchResult')" ng-class="{'active': songs.filter == 'popularity+up'}"> 
-                            <i class="icon-arrow-up"></i> name </button>
-
-                       <button type="button" class="btn btn-default" ng-click="filter('volume+up', 'searchResult')" ng-class="{'active': songs.filter == 'albumName+up'}"> 
-                            <i class="icon-text-height"></i> volume </button>
-                    </div>-->
+                   
                     
                 </div><!--end search-controls-->
              </article><!--end row-->
@@ -212,6 +215,7 @@
                             <span>{{product.price_per_liter}} kr/L</span> 
                            <!-- <span>apk: {{product.apk}}</span> -->
                             <span class="country"> 
+                               <img ng-src="http://systembolaget.se/img/flags/{{product.country.name.replace(' ', '')}}.gif"/>
                                 <span ng-show="! (product.origin.name.length && product.origin.name.length > 0)">{{product.country.name}}</span> <span>{{product.origin.name}}</span>
                             </span>
                             <span ng-show='product.year > 0'> {{product.year}}</span>
