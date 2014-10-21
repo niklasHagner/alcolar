@@ -2,7 +2,7 @@ app.value("drinkCategory_options",
   [
     {
         "id": "",
-        "name": "everything"
+        "name": "any"
       },
       {
         "id": "6",

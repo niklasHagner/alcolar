@@ -29,9 +29,15 @@ app.controller('SystembolagetSearchController',
                     
                     var searchProduct = product;
                     searchProduct.alcohol = roundUp(decToPercentageNum(product.alcohol), 1);
+                    searchProduct.price_per_liter = roundUp(product.price_per_liter, 0);
                     searchProduct.volume = roundUp(parseFloat(product.volume) * 100, 0);
                     searchProduct.article_id = product.article_id; //todo: modify ID to fit to suit official systemet API
                     searchProduct.img = "http:\/\/www.systembolaget.se\/imagevaultfiles\/id_11184\/cf_1915\/" + product.article_id + ".jpg";
+                    searchProduct.country = country_options.filter(function(x) { 
+                        return x.id == product.country_id; 
+                    })[0];
+                    
+                    console.log(searchProduct);
                     $scope.products.push(searchProduct);
                 });
                  
@@ -50,7 +56,7 @@ app.controller('SystembolagetSearchController',
         orderby : { key: "order_by", value: "alcohol" }, //todo: bind
         orderby_options : [
             {value: "", display:"default" }, 
-            {value: "alcohol", display:"alcohol percent" }, 
+            {value: "alcohol", display:"alcohol %" }, 
             {value: "name", display:"product name" }, 
             {value: "price", display:"price" },  
             {value: "price_per_liter", display:"price per liter" }, 

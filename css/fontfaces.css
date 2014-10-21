@@ -30,27 +30,6 @@
 
 
 
-/* FONT FACES
-***************************************************************/
-@font-face {
-    font-family: 'Ballpark';
-    src: url('fonts/helvetica/HelveticaLTStd-Bold.woff') format('woff'),format('truetype'),
-		url('fonts/helvetica/HelveticaLTStd-Bold.svg') format('svg');
-    font-weight: bold;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('fonts/helvetica/HelveticaLTStd-Bold.eot?') format('eot'),
-		url('fonts/helvetica/HelveticaLTStd-Bold.woff') format('woff'),
-		url('fonts/helvetica/HelveticaLTStd-Bold.ttf') format('truetype'),
-		url('fonts/helvetica/HelveticaLTStd-Bold.svg') format('svg');
-    font-weight: bold;
-    font-style: normal;
-
-}
 
 
 @font-face {
@@ -89,14 +68,6 @@ font-family: Ubuntu;
 
 
 @font-face {
-	font-family: 'MothProof';
-	src: url('fonts/Mothproof_Script-webfont.eot');
-	src: local('?'), url('fonts/Mothproof_Script-webfont.woff') format('woff'), url('fonts/Mothproof_Script-webfont.ttf') format('truetype'), url('fonts/Mothproof_Script-webfont.svg#webfontwlz4C23y') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
 	font-family: 'blackRose';
 	src: url('fonts/blackr-webfont.eot');
 	src: local('☺'), url('fonts/blackr-webfont.woff') format('woff'), url('fonts/blackr-webfont.ttf') format('truetype'), url('fonts/blackr-webfont.svg#webfontdjgWRTfr') format('svg');
@@ -127,60 +98,6 @@ font-family: Ubuntu;
 
 
 
-
-/* CAVIAR DREAMS *************************************************************************/
-@font-face {
-    font-family: 'CaviarDreamsItalic';
-    src: url('fonts/CaviarDreams/CaviarDreamsItalic-webfont.eot');
-    src: url('fonts/CaviarDreams/CaviarDreamsItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/CaviarDreams/CaviarDreamsItalic-webfont.woff') format('woff'),
-         url('fonts/CaviarDreams/CaviarDreamsItalic-webfont.ttf') format('truetype'),
-         url('fonts/CaviarDreams/CaviarDreamsItalic-webfont.svg#CaviarDreamsItalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'CaviarDreamsBoldItalic';
-    src: url('fonts/CaviarDreams/CaviarDreams_BoldItalic-webfont.eot');
-    src: url('fonts/CaviarDreams/CaviarDreams_BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/CaviarDreams/CaviarDreams_BoldItalic-webfont.woff') format('woff'),
-         url('fonts/CaviarDreams/CaviarDreams_BoldItalic-webfont.ttf') format('truetype'),
-         url('fonts/CaviarDreams/CaviarDreams_BoldItalic-webfont.svg#CaviarDreamsBoldItalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'CaviarDreams';
-    src: url('fonts/CaviarDreams/CaviarDreams-webfont.eot');
-    src: url('fonts/CaviarDreams/CaviarDreams-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/CaviarDreams/CaviarDreams-webfont.woff') format('woff'),
-         url('fonts/CaviarDreams/CaviarDreams-webfont.ttf') format('truetype'),
-         url('fonts/CaviarDreams/CaviarDreams-webfont.svg#CaviarDreamsRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'CaviarDreamsBold';
-    src: url('fonts/CaviarDreams/CaviarDreams_Bold-webfont.eot');
-    src: url('fonts/CaviarDreams/CaviarDreams_Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/CaviarDreams/CaviarDreams_Bold-webfont.woff') format('woff'),
-         url('fonts/CaviarDreams/CaviarDreams_Bold-webfont.ttf') format('truetype'),
-         url('fonts/CaviarDreams/CaviarDreams_Bold-webfont.svg#CaviarDreamsBold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-
-/* BIG TWEET FONT FACES
-***************************************************************/
-
 @font-face {
     font-family: 'QlassikMediumRegular';
     src: url('fonts/qlassik/Qlassik_TB-webfont.eot?') format('eot'),
@@ -203,31 +120,6 @@ font-family: Ubuntu;
 
 }
 
-@font-face {
-    font-family: 'MyUnderwoodRegular';
-    src: url('fonts/myunderwood/MyUnderwood-webfont.eot');
-    src: url('fonts/myunderwood/MyUnderwood-webfont.eot?iefix') format('eot'),
-         url('fonts/myunderwood/MyUnderwood-webfont.woff') format('woff'),
-         url('fonts/myunderwood/MyUnderwood-webfont.ttf') format('truetype'),
-         url('fonts/myunderwood/MyUnderwood-webfont.svg#webfont72lyKL7L') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'AnotherRegular';
-    src: url('fonts/another/another-webfont.eot');
-    src: url('fonts/another/another-webfont.eot?iefix') format('eot'),
-         url('fonts/another/another-webfont.woff') format('woff'),
-         url('fonts/another/another-webfont.ttf') format('truetype'),
-         url('fonts/another/another-webfont.svg#webfonttHA7pNTl') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-
 
 
 @font-face {
@@ -241,57 +133,6 @@ font-family: Ubuntu;
     font-style: normal;
 
 }
-@font-face {
-    font-family: 'NK Mono';
-    src: url('fonts/NK_Mono.eot');
-    src: url('fonts/NK_Mono.eot?#iefix') format('embedded-opentype'),
-         url('fonts/NK_Mono.woff') format('woff'),
-         url('fonts/NK_Mono.ttf') format('truetype'),
-         url('fonts/NK_Mono.svg#NK_Mono') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-/* Generated by Font Squirrel (http://www.fontsquirrel.com) on March 17, 2012 12:40:34 PM America/New_York */
-
-
-@font-face {
-    font-family: 'ComfortaaThin';
-    src: url('fonts/comforta/Comfortaa_Thin-webfont.eot');
-    src: url('fonts/comforta/Comfortaa_Thin-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/comforta/Comfortaa_Thin-webfont.woff') format('woff'),
-         url('fonts/comforta/Comfortaa_Thin-webfont.ttf') format('truetype'),
-         url('fonts/comforta/Comfortaa_Thin-webfont.svg#ComfortaaThin') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'Comfortaa';
-    src: url('fonts/comforta/Comfortaa_Regular-webfont.eot');
-    src: url('fonts/comforta/Comfortaa_Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/comforta/Comfortaa_Regular-webfont.woff') format('woff'),
-         url('fonts/comforta/Comfortaa_Regular-webfont.ttf') format('truetype'),
-         url('fonts/comforta/Comfortaa_Regular-webfont.svg#ComfortaaRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'ComfortaaBold';
-    src: url('fonts/comforta/Comfortaa_Bold-webfont.eot');
-    src: url('fonts/comforta/Comfortaa_Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/comforta/Comfortaa_Bold-webfont.woff') format('woff'),
-         url('fonts/comforta/Comfortaa_Bold-webfont.ttf') format('truetype'),
-         url('fonts/comforta/Comfortaa_Bold-webfont.svg#ComfortaaBold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 
 @font-face {
     font-family: 'Pacifico';
@@ -316,14 +157,6 @@ font-family: Ubuntu;
 @font-face {
     font-family: 'DekarLight';
     src: url('fonts/DekarLight/DekarLight.otf');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'MotorOil';
-    src: url('fonts/Motor Oil 1937 M54.ttf');
     font-weight: normal;
     font-style: normal;
 

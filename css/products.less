@@ -2,7 +2,7 @@
 
 
 .search-result-product, .favourite-product {
-    min-height: 100px; max-height: 150px; 
+    min-height: 110px; max-height: 200px; 
     width: 340px;
     padding: 4px;
     margin-bottom: 5px;
@@ -110,6 +110,7 @@
     float: right;
     margin-right: 12px;
     margin-top: 8px;
+    color: #555;
 }
 @media (max-width: 800px) {
   .search-result-add {
@@ -133,12 +134,17 @@
     margin-top: 10px;
     display:block; clear:both;
 }
+.product-stats>span { 
+    display:inline-block;
+}
 .product-stats span + span{
-    margin-left: 20px;
+    margin-left: 20px; margin-top: 3px;
 }
 
 .product-stats span:nth-child(odd) {
     background-color: #eee;
 }
+
+.country { font-style: italic; }
 
 
