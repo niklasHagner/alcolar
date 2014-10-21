@@ -6,31 +6,31 @@ app.value("drinkCategory_options",
       },
       {
         "id": "6",
-        "name": "beer"
+        "name": "beer", isMainCategory : true
       },
      {
         "id": "20",
-        "name": "wine"
+        "name": "wine", isMainCategory : true
       },
       {
         "id": "23",
-        "name": "red-wine"
+        "name": "red wine", parentCategoryId : 20
       },
       {
         "id": "25",
-        "name": "white-wine"
+        "name": "white wine", parentCategoryId : 20
       },
     {
         "id": "24",
-        "name": "sparkling"
+        "name": "sparkling", parentCategoryId : 20
       },
       {
         "id": "21",
-        "name": "dry"
+        "name": "dry", parentCategoryId : 20
       },
       {
         "id": "22",
-        "name": "rose"
+        "name": "rose", parentCategoryId : 20
       },
       {
         "id": "3",
@@ -46,7 +46,7 @@ app.value("drinkCategory_options",
       },
       {
         "id": "9",
-        "name": "grappa"
+        "name": "grappa", parentCategoryId : 20
       },
       {
         "id": "10",
@@ -94,15 +94,15 @@ app.value("drinkCategory_options",
       },
      {
         "id": "7",
-        "name": "ale"
+        "name": "ale", parentCategoryId : 6
       },
       {
         "id": "8",
-        "name": "stout"
+        "name": "stout", parentCategoryId : 6
       },
       {
         "id": "19",
-        "name": "lager"
+        "name": "lager", parentCategoryId : 6
       },
       
       {
@@ -123,7 +123,7 @@ app.value("drinkCategory_options",
       },
       {
         "id": "30",
-        "name": "mulled-wine"
+        "name": "mulled-wine", parentCategoryId : 20
       },
       {
         "id": "31",
@@ -139,7 +139,7 @@ app.value("drinkCategory_options",
       },
       {
         "id": "34",
-        "name": "sherry"
+        "name": "sherry", parentCategoryId : 20
       },
       {
         "id": "35",
