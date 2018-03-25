@@ -1,0 +1,25 @@
+{
+  "name": "alcolar",
+  "version": "1.0.0",
+  "description": "systembolaget search",
+  "main": "bolaget.html",
+  "scripts": {
+    "build" : "lessc css/*.less *.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niklasHagner/Alcolar.git"
+  },
+  "keywords": [
+    "systembolaget"
+  ],
+  "author": "niklas hagner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niklasHagner/Alcolar/issues"
+  },
+  "homepage": "https://github.com/niklasHagner/Alcolar#readme",
+  "dependencies": {
+    "less": "^3.0.1"
+  }
+}
