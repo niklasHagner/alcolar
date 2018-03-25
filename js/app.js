@@ -41,7 +41,7 @@ app.controller('SystembolagetSearchController',
                     $scope.products.push(searchProduct);
                 });
                  
-                //systembolagetSearch.getImages($scope.products); //fetch images async, since they are unimportant
+                //systembolagetSearch.getImages($scope.products); //fetch images async
             })
     };
     
@@ -66,13 +66,9 @@ app.controller('SystembolagetSearchController',
             { key: "order", value: "DESC" }
         ],
         order : { key: "order", value: "ASC" },
-      
-        
-       
         country : { key: "country", value: "1" },
-      
         name : { key: "name", value: "" },
-        
+      
         maxVolume : { key: "max_volume", value: 0.33 },
         limit : { key: "limit", value: 50 },
         offset : { key: "offset", value: 0 },
@@ -86,14 +82,10 @@ app.controller('SystembolagetSearchController',
         apkMin : { key: "apk_from", value: 0.9 },
         apkMax : { key: "apk_to", value: 6 },
         
-        
         minDate : { key: "start_date_from", value: "2014-03-31" },
         maxDate : { key: "start_date_to", value: "2014-05-01" },
         minYear : { key: "year_from", value: "2006" },
         maxYear : { key: "year_to", value: "2014" }
-    
-
-		
 	};
     $scope.filterSettings.drinkCategory_selected = $scope.filterSettings.drinkCategory_options[1];
     $scope.filterSettings.drinkCategory = function() {
@@ -106,25 +98,24 @@ app.controller('SystembolagetSearchController',
     };
     $scope.filterSettings.filterArray = function() { 
         var arr = [  
-        
-        $scope.filterSettings.drinkCategory() ,
-        //$scope.filterSettings.maxVolume,
-        $scope.filterSettings.alcoholMin ,
-        //$scope.filterSettings.alcoholMax ,
-        //$scope.filterSettings.apkMin ,
-        //$scope.filterSettings.apkMax ,
-        //$scope.filterSettings.country ,
-        //$scope.filterSettings.limit , 
-        $scope.filterSettings.name,
-        //$scope.filterSettings.offset ,
-        $scope.filterSettings.minPrice,
-        $scope.filterSettings.maxPrice
-        //$scope.filterSettings.minPricePerLiter ,  
-        //$scope.filterSettings.maxPricePerLiter ,
-        //$scope.filterSettings.minDate ,
-        //$scope.filterSettings.maxDate ,
-        //$scope.filterSettings.minYear ,
-        //$scope.filterSettings.maxYear
+            $scope.filterSettings.drinkCategory() ,
+            //$scope.filterSettings.maxVolume,
+            $scope.filterSettings.alcoholMin ,
+            //$scope.filterSettings.alcoholMax ,
+            //$scope.filterSettings.apkMin ,
+            //$scope.filterSettings.apkMax ,
+            //$scope.filterSettings.country ,
+            //$scope.filterSettings.limit , 
+            $scope.filterSettings.name,
+            //$scope.filterSettings.offset ,
+            $scope.filterSettings.minPrice,
+            $scope.filterSettings.maxPrice
+            //$scope.filterSettings.minPricePerLiter ,  
+            //$scope.filterSettings.maxPricePerLiter ,
+            //$scope.filterSettings.minDate ,
+            //$scope.filterSettings.maxDate ,
+            //$scope.filterSettings.minYear ,
+            //$scope.filterSettings.maxYear
         ];
         return arr;
     };
@@ -149,9 +140,6 @@ app.controller('SystembolagetSearchController',
         });
         $scope.filterSettings.drinkCategory_selected = $scope.filterSettings.drinkCategory_options[0];
         $scope.performSearch();
-        /*$scope.filterSettings.filterArray().forEach(function(elem, index) {
-            console.log(elem.value);
-        });*/
     };
                     
     $scope.setOrderBy = function(orderByObj, upOrDown, targetArrayName) {
@@ -192,6 +180,4 @@ app.controller('SystembolagetSearchController',
     $scope.toggleSearchView = function() {
         $scope.searchView = !$scope.searchView;
     };
-
-	
 }]);
